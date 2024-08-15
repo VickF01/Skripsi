@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container mt-5 my-4">
+    <h2 class="text-center mb-4">Model Random Forest</h2>
+    <div class="row my-4">
+        <div class="col text-center">
+            <img src="/static/image/confussion_matrix.png" alt="Logo UBM" class="model">
+            <p class="my-4">Confussion Matrix</p>
+        </div>
+        <div class="col text-center">
+            <img src="/static/image/classification_report.png" alt="Logo Kanan" class="model">
+            <p class="my-4">Classification Report</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Hasil Uji Model</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Komentar</th>
+                <th scope="col">Prediksi</th>
+                <th scope="col">Aktual</th>
+                <th scope="col">Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                {% if row[2] == '1' %}
+                <td>Positif</td>
+                {% else %}
+                <td>Negatif</td>
+                {% endif %}
+                {% if row[1] == '1' %}
+                <td>Positif</td>
+                {% else %}
+                <td>Negatif</td>
+                {% endif %}
+                {% if row[1] == row[2] %}
+                <td>Benar</td>
+                {% else %}
+                <td>Salah</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <hr>
+    <h2 class="text-center mb-4">Prediksi Sentimen</h2>
+    <hr>
+    <form id="sentimentForm" action="/prediksi" method="post" enctype="multipart/form-data">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="commentOption" name="inputOption" value="comment">
+            <label class="form-check-label" for="commentOption">Input Komentar</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="fileOption" name="inputOption" value="file">
+            <label class="form-check-label" for="fileOption">Unggah File</label>
+        </div>
+        <div class="form-group" id="commentField" style="display: none;">
+            <label for="comment">Masukkan Komentar :</label>
+            <textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
+        </div>
+        <div class="form-group" id="fileUploadField" style="display: none;">
+            <label for="fileUpload" class="form-label">Unggah File (.txt):</label>
+            <input type="file" class="form-control" id="fileUpload" name="fileUpload" accept=".txt">
+            <small class="form-text text-muted">Pastikan file .txt berisi kalimat yang dipisahkan dengan baris baru.</small>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-3">Prediksi</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("commentOption").addEventListener("change", function() {
+    if (this.checked) {
+        document.getElementById("commentField").style.display = "block";
+        document.getElementById("fileUploadField").style.display = "none";
+    }
+});
+
+document.getElementById("fileOption").addEventListener("change", function() {
+    if (this.checked) {
+        document.getElementById("fileUploadField").style.display = "block";
+        document.getElementById("commentField").style.display = "none";
+    }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card-body">
+            <hr>
+            <h2 class="text-center mb-4">Word Cloud Sentimen</h2>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-6 d-flex justify-content-center align-items-center">
+        <div class="card text-black p-3 shadow">
+            <img src="/static/image/wordcloud_positive.png" alt="Wordcloud Positif">
+            <div class="text-center p-2">
+                Word Cloud Kata Positif
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-6 d-flex justify-content-center align-items-center">
+        <div class="card text-black p-3 shadow">
+            <img src="/static/image/wordcloud_negative.png" alt="Wordcloud Negatif">
+            <div class="text-center p-2">
+                Word Cloud Kata Negatif
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

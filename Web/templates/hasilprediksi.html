@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <a href="/prediksi" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i>  Kembali</a>
+    <hr>
+    <h2 class="text-center mb-4">Hasil Prediksi Sentimen</h2>
+    <hr>
+    
+    {% if hasil_prediksi %}
+        {% for hasil in hasil_prediksi %}
+            {% set index = loop.index - 1 %}
+            {% if hasil == 1 %}
+                <div class="alert alert-success" role="alert">
+                    <div>
+                        <p>Kalimat {{ index + 1 }} : {{ kalimat_input[index] }}</p>
+                        <p>Input Text Lower: {{ input_texts_lower[index] }}</p>
+                        <p>Hasil Remove Special Character : {{ cleaned_texts[index] }}</p>
+                        <p>Tokenisasi Kata : {{ tokenized_texts[index] }}</p>
+                        <p>Kata-kata Setelah Stemming : {{ stemmed_texts[index] }}</p>
+                        <p>Kata-kata Tanpa Stopwords : {{ removed_stopwords[index] }}</p>
+                        <p>Kata-kata Setelah Replace Slang : {{ replaced_slangs[index] }}</p>
+                        <p>Hasil Pre-processing : {{ final_texts[index] }}</p>
+                    </div>
+                    <p>Hasil prediksi sentimen : Positif</p>
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    <div>
+                        <p>Kalimat {{ index + 1 }} : {{ kalimat_input[index] }}</p>
+                        <p>Input Text Lower: {{ input_texts_lower[index] }}</p>
+                        <p>Hasil Remove Special Character : {{ cleaned_texts[index] }}</p>
+                        <p>Tokenisasi Kata : {{ tokenized_texts[index] }}</p>
+                        <p>Kata-kata Setelah Stemming : {{ stemmed_texts[index] }}</p>
+                        <p>Kata-kata Tanpa Stopwords : {{ removed_stopwords[index] }}</p>
+                        <p>Kata-kata Setelah Replace Slang : {{ replaced_slangs[index] }}</p>
+                        <p>Hasil Akhir : {{ final_texts[index] }}</p>
+                    </div>
+                    <p>Hasil prediksi sentimen : Negatif</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Tidak ada hasil prediksi yang tersedia.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

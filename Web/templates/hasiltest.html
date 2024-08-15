@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card-body">
+            <hr>
+            <h2 class="text-center mb-4">Hasil Test Model Random Forest</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered border-secondary" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Komentar</th>
+                            <th scope="col" class="text-center">Prediksi</th>
+                            <th scope="col" class="text-center">Aktual</th>
+                            <th scope="col" class="text-center">Hasil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            {% if row[2] == '1' %}
+                            <td class="text-success">Positif</td>
+                            {% else %}
+                            <td class="text-danger">Negatif</td>
+                            {% endif %}
+                            {% if row[1] == '1' %}
+                            <td class="text-success">Positif</td>
+                            {% else %}
+                            <td class="text-danger">Negatif</td>
+                            {% endif %}
+                            {% if row[1] == row[2] %}
+                            <td class="text-primary">Benar</td>
+                            {% else %}
+                            <td class="text-danger">Salah</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {{ pagination.links }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

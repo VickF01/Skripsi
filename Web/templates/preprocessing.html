@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card-body">
+            <hr>
+            <h2 class="text-center mb-4">Hasil Preprocessing Data Ulasan</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border-secondary" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center align-middle">No.</th>
+                            <th scope="col" class="text-center align-middle">Komentar</th>
+                            <th scope="col" class="text-center align-middle">Lowercasing dan Remove Special Character</th>
+                            <th scope="col" class="text-center align-middle">Tokenize</th>
+                            <th scope="col" class="text-center align-middle">Stemming</th>
+                            <th scope="col" class="text-center align-middle">Removed Stopword</th>
+                            <th scope="col" class="text-center align-middle">Slangwords Filtering</th>
+                            <th scope="col" class="text-center align-middle">Remove Synonim</th>
+                            <th scope="col" class="text-center align-middle">Label</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[5] }}</td>
+                            <td>{{ row[8] }}</td>
+                            <td>{{ row[9] }}</td>
+                            <td>{{ row[10] }}</td>
+                            <td>{{ row[11] }}</td>
+                            <td>{{ row[12] }}</td>
+                            <td>{{ row[13] }}</td>
+                            {% if row[6] == '1' %}
+                            <td class="text-success">Positif</td>
+                            {% elif row[6] == '0' %}
+                            <td class="text-danger">Negatif</td>
+                            {% else %}
+                            <td class="text-muted">Netral</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {{ pagination.links }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

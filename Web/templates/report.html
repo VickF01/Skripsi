@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mb-6">
+        <div class="card text-black p-3 shadow mb-3">
+            <div class="text-center p-2">
+                <hr>
+                Confusion Matrix
+                <hr>
+            </div>
+            <img src="/static/image/confussion_matrix.png" alt="Confusion Matrix">
+            <div>
+                <br>
+                <h4 style="text-decoration: underline;" class="text-center">Keterangan</h4>
+                <table class="table table-bordered border-secondary" style="width: 100%">
+                    <tr>
+                        <td>True Negatif</td>
+                        <td>{{ confusion_matrix_data['0']['0'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>False Positif</td>
+                        <td>{{ confusion_matrix_data['0']['1'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>False Negatif</td>
+                        <td>{{ confusion_matrix_data['1']['0'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>True Positif</td>
+                        <td>{{ confusion_matrix_data['1']['1'] }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-6">
+        <div class="card text-black p-3 shadow mb-3">
+            <div class="text-center p-2">
+                <hr>
+                Classification Report
+                <hr>
+            </div>
+            <img src="/static/image/classification_report.png" alt="Classification Report">
+            <div>
+                <br>
+                <h4 style="text-decoration: underline;" class="text-center">Keterangan</h4>
+                <table class="table table-bordered border-secondary" style="width: 100%">
+                    <tr>
+                        <td title="Akurasi adalah tingkat kebenaran dari prediksi model terhadap keseluruhan data.">Akurasi</td>
+                        <td>{{ "%.2f" % (metrics['Accuracy']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="Precision Positive adalah proporsi positif yang benar dari semua prediksi positif yang dibuat oleh model.">Precision Positive</td>
+                        <td>{{ "%.2f" % (metrics['Precision Positive']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="Precision Negative adalah proporsi negatif yang benar dari semua prediksi negatif yang dibuat oleh model.">Precision Negative</td>
+                        <td>{{ "%.2f" % (metrics['Precision Negative']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="Recall Positive adalah proporsi positif yang benar yang diidentifikasi oleh model dari semua label sebenarnya yang positif.">Recall Positive</td>
+                        <td>{{ "%.2f" % (metrics['Recall Positive']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="Recall Negative adalah proporsi negatif yang benar yang diidentifikasi oleh model dari semua label sebenarnya yang negatif.">Recall Negative</td>
+                        <td>{{ "%.2f" % (metrics['Recall Negative']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="F1 Score Positive adalah rata-rata harmonik dari precision positif dan recall positif.">F1 Score Positive</td>
+                        <td>{{ "%.2f" % (metrics['F1 Score Positive']|float * 100) }}%</td>
+                    </tr>
+                    <tr>
+                        <td title="F1 Score Negative adalah rata-rata harmonik dari precision negatif dan recall negatif.">F1 Score Negative</td>
+                        <td>{{ "%.2f" % (metrics['F1 Score Negative']|float * 100) }}%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
